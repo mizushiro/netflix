@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../images/favicon.ico">
+<title>PFS</title>
+<link rel="stylesheet" href="../css/vendors_css.css">
+<link rel="stylesheet" href="../css/style.min.css">
+<link rel="stylesheet" href="../css/style_add.css">
+    <link rel="stylesheet" type="text/css" href="../js/realgrid/realgrid-style.css"/>
+    <script src="../js/realgrid/realgrid-lic.js"></script>
+    <script src="../js/realgrid/realgrid.2.3.3.min.js"></script>
+    <script src="../js/realgrid/libs/jszip.min.js"></script>
+
+
+    <style>
+        #realgrid {
+            width: 100%;
+            height: 290px;
+        }
+    </style>
+
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 설치
+            const container = document.getElementById('realgrid');
+            const provider = new RealGrid.LocalDataProvider(false);
+            const gridView = new RealGrid.GridView(container);
+            gridView.setDataSource(provider);
+            gridView.editOptions.insertable = true;
+            gridView.editOptions.appendable = true;
+            gridView.displayOptions.fitStyle = "even";
+            gridView.displayOptions.selectionStyle = "rows"
+            // 필드 생성
+            provider.setFields([
+                {
+                    fieldName: "Code",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "Item",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "Details",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "Qty",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "Unit",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "UnitPrice",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "DetailBudget",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "TotalBudget",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "TotalBudget1",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "TotalBudget2",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "TotalBudget3",
+                    dataType: "number",
+                },
+            ]);
+
+            // 컬럼 생성
+            gridView.setColumns([
+                {
+                    name: "CodeColumn",
+                    fieldName: "Code",
+                    type: "data",
+                    header: {
+                        text: "코드",
+                    },
+                },
+                {
+                    name: "ItemColumn",
+                    fieldName: "Item",
+                    type: "data",
+                    header: {
+                        text: "항목",
+                    },
+                },
+                {
+                    name: "DetailsColumn",
+                    fieldName: "Details",
+                    type: "data",
+                    header: {
+                        text: "세부항목",
+                    },
+                },
+                {
+                    name: "QtyColumn",
+                    fieldName: "Qty",
+                    type: "data",
+                    header: {
+                        text: "수량",
+                    },
+                },
+                {
+                    name: "UnitColumn",
+                    fieldName: "Unit",
+                    type: "data",
+                    header: {
+                        text: "단위",
+                    },
+                },
+                {
+                    name: "UnitPriceColumn",
+                    fieldName: "UnitPrice",
+                    type: "data",
+                    header: {
+                        text: "단가",
+                    },
+                },
+                {
+                    name: "DetailBudgetColumn",
+                    fieldName: "DetailBudget",
+                    type: "data",
+                    header: {
+                        text: "세부예산",
+                    },
+                },
+                {
+                    name: "TotalBudgetColumn",
+                    fieldName: "TotalBudget",
+                    type: "data",
+
+                    header: {
+                        text: "총예산",
+
+                    },
+                    footer: {
+                        text: "합계",
+                        expression: "sum",
+                        styleName:"orange-column",
+                        numberFormat: "#,##0",
+
+                    },
+                    styleName: "right-column"
+                },
+                {
+                    name: "TotalBudgetColumn3",
+                    fieldName: "TotalBudget3",
+                    type: "data",
+                    header: {
+                        text: " ",
+                    },
+                },
+                {
+                    name: "TotalBudgetColumn1",
+                    fieldName: "TotalBudget1",
+                    type: "data",
+                    header: {
+                        text: " ",
+                    },
+                },
+                {
+                    name: "TotalBudget2Column",
+                    fieldName: "TotalBudget2",
+                    type: "data",
+                    header: {
+                        text: " ",
+                    },
+                },
+            ]);
+
+            // 데이터 채우기
+            provider.setRows([
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+
+            ]);
+        });
+    </script>
+</head>
+<body class="sidebar-mini light-skin theme-green">
+<div id="skip-navigation">
+    <p><a href="#goto-header">헤더영역 바로가기</a></p>
+    <p><a href="#goto-aside">사이드바영역 바로가기</a></p>
+    <p><a href="#goto-content">컨텐츠영역 바로가기</a></p>
+</div>
+<!-- wrapper -->
+<div class="wrapper">
+    <!-- header -->
+    <header class="main-header" id="goto-header">
+        <h2 class="blind">헤더영역</h2>
+        <div class="logo-box">
+            <a href="#a" class="logo"><span class="blind">PFS</span></a>
+        </div>
+        <div class="push-box">
+            <a href="#a" class="push-btn" data-toggle="push-menu" role="button"><span class="blind">open and closing sidebar</span></a>
+        </div>
+        <!-- navbar -->
+        <nav class="navbar">
+
+            <h3>킹덤
+                <span class="sub-title"></span>
+                <span class="btn-setting"></span>
+             </h3>
+            <div class="navbar-custom-menu">
+                <ul class="menulist">
+                    <li>
+                        <a href="#"  title="Home" class="btn-icon">
+                            <i class="ic-home">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M27.5 10.7203L16.25 2.27157C15.75 1.90948 15.125 1.90948 14.75 2.27157L3.5 10.7203C3.125 10.9617 3 11.3238 3 11.6859V24.9624C3 27.0143 4.625 28.5833 6.75 28.5833H24.25C26.375 28.5833 28 27.0143 28 24.9624V11.6859C28 11.3238 27.875 10.9617 27.5 10.7203ZM18 16.5137V26.1694H13V16.5137H18ZM24.25 26.1694C25 26.1694 25.5 25.6866 25.5 24.9624V12.2893L15.5 4.80619L5.5 12.2893V24.9624C5.5 25.6866 6 26.1694 6.75 26.1694H10.5V15.3068C10.5 14.5826 11 14.0998 11.75 14.0998H19.25C20 14.0998 20.5 14.5826 20.5 15.3068V26.1694H24.25Z" fill="currentcolor" />
+                                </svg>
+                            </i>
+                        </a>
+                    </li>
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="waves-effect waves-light dropdown-toggle" data-toggle="dropdown" title="Notifications">
+                            <i class="ic-menulist-noti">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3264 5.27886V2.39286C13.3264 1.624 13.9805 1 14.7863 1C15.5907 1 16.2462 1.624 16.2462 2.39286V5.27886C18.4156 5.57693 20.4433 6.538 22.0113 8.03393C23.9281 9.86275 25.0055 12.3434 25.0055 14.9286V20.1713L26.1865 22.4249C26.7515 23.5044 26.6916 24.7858 26.0259 25.8124C25.3617 26.8389 24.1865 27.4643 22.9222 27.4643H16.2462C16.2462 28.2331 15.5907 28.8571 14.7863 28.8571C13.9805 28.8571 13.3264 28.2331 13.3264 27.4643H6.65041C5.38469 27.4643 4.20951 26.8389 3.54527 25.8124C2.87956 24.7858 2.8197 23.5044 3.38613 22.4249L4.56716 20.1713V14.9286C4.56716 12.3434 5.64311 9.86275 7.55994 8.03393C9.1293 6.538 11.1556 5.57693 13.3264 5.27886ZM14.7863 7.96428C12.849 7.96428 10.9936 8.69832 9.62421 10.0048C8.25484 11.3099 7.48691 13.0816 7.48691 14.9286V20.5C7.48691 20.7159 7.43292 20.929 7.33219 21.1226C7.33219 21.1226 6.68253 22.3622 5.99638 23.6701C5.88397 23.886 5.89566 24.1437 6.02851 24.3485C6.16135 24.5532 6.39639 24.6786 6.65041 24.6786H22.9222C23.1748 24.6786 23.4098 24.5532 23.5427 24.3485C23.6755 24.1437 23.6872 23.886 23.5748 23.6701C22.8887 22.3622 22.239 21.1226 22.239 21.1226C22.1383 20.929 22.0857 20.7159 22.0857 20.5V14.9286C22.0857 13.0816 21.3163 11.3099 19.947 10.0048C18.5776 8.69832 16.7221 7.96428 14.7863 7.96428Z" fill="currentcolor"/>
+                                </svg>
+                            </i>
+                        </a>
+                        <span class="num">6</span>
+                        <div class="dropdown-menu noti animated fadeIn">
+                            <div class="caret"></div>
+                            <div class="header">
+                                <span>new</span>
+                                <span class="num-in">21</span>
+                            </div>
+                            <ul class="menu sm-scrol">
+                                <li>
+                                    <a href="#a">
+                                        <i class="ic-mail"></i>
+                                        <div class="date">20.12.06</div>
+                                        <div class="name">김윤아</div>
+                                        <div class="cont">유급 휴가 및 기타 휴가신청</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#a">
+                                        <i class="ic-mail"></i>
+                                        <div class="date">20.12.06</div>
+                                        <div class="name">김하나</div>
+                                        <div class="cont">재직 증명서 신청</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#a">
+                                        <i class="ic-mail"></i>
+                                        <div class="date">20.12.06</div>
+                                        <div class="name">김하나</div>
+                                        <div class="cont">재직 증명서 신청</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#a">
+                                        <i class="ic-mail"></i>
+                                        <div class="date">20.12.06</div>
+                                        <div class="name">김하나</div>
+                                        <div class="cont">재직 증명서 신청</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#a">
+                                        <i class="ic-mail"></i>
+                                        <div class="date">20.12.06</div>
+                                        <div class="name">김하나</div>
+                                        <div class="cont">개인정보 협력업체 등록/해제 요청서</div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#a" class="btn-view-all">view all</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="control-sidebar" title="Setting" class="waves-effect waves-light">
+                            <i class="ic-menulist-setting">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.46386 10.1574C2.35852 11.9748 3.41453 13.8521 4.68788 14.5495L4.94921 14.6921C4.94521 14.7961 4.94255 14.9001 4.94121 15.0001C4.94255 15.1001 4.94521 15.2041 4.94921 15.3081L4.68788 15.4508C3.41453 16.1482 2.35852 18.0255 3.46386 19.8429L4.93988 22.2669C5.97189 23.9616 7.98258 24.0376 9.21193 23.3642L9.44927 23.2336C9.74527 23.4256 10.0533 23.6042 10.3679 23.7696V23.8149C10.3679 25.4443 11.6546 27.0003 13.524 27.0003H16.476C18.3454 27.0003 19.6321 25.4443 19.6321 23.8149V23.7696C19.9467 23.6042 20.2547 23.4256 20.5507 23.2336L20.7881 23.3642C22.0174 24.0376 24.0281 23.9616 25.0601 22.2669L26.5361 19.8429C27.6415 18.0255 26.5855 16.1482 25.3121 15.4508L25.0508 15.3081C25.0548 15.2041 25.0575 15.1001 25.0588 15.0001C25.0575 14.9001 25.0548 14.7961 25.0508 14.6921L25.3121 14.5495C26.5855 13.8521 27.6415 11.9748 26.5361 10.1574L25.0601 7.73339C24.0281 6.0387 22.0174 5.96404 20.7881 6.63604L20.5507 6.76671C20.2547 6.57471 19.9467 6.39604 19.6321 6.23071V6.18537C19.6321 4.55602 18.3454 3 16.476 3H13.524C11.6546 3 10.3679 4.55602 10.3679 6.18537V6.23071C10.0533 6.39604 9.74527 6.57471 9.44927 6.76671L9.21193 6.63604C7.98258 5.96404 5.97189 6.0387 4.93988 7.73339L3.46386 10.1574ZM9.69594 9.94142L7.93458 8.97607C7.67325 8.8334 7.35058 8.8974 7.21457 9.12141L5.73856 11.5454C5.60256 11.7694 5.70389 12.0654 5.96523 12.2094L7.82658 13.2281C7.68258 13.7948 7.60525 14.3895 7.60525 15.0001C7.60525 15.6108 7.68258 16.2055 7.82658 16.7722L5.96523 17.7908C5.70389 17.9348 5.60256 18.2308 5.73856 18.4548L7.21457 20.8789C7.35058 21.1029 7.67325 21.1669 7.93458 21.0242L9.69594 20.0589C10.5999 20.9722 11.7453 21.6522 13.032 22.0002V23.8149C13.032 24.1016 13.252 24.3336 13.524 24.3336H16.476C16.748 24.3336 16.968 24.1016 16.968 23.8149V22.0002C18.2547 21.6522 19.4001 20.9722 20.3041 20.0589L22.0654 21.0242C22.3268 21.1669 22.6494 21.1029 22.7854 20.8789L24.2614 18.4548C24.3974 18.2308 24.2961 17.9348 24.0348 17.7908L22.1734 16.7722C22.3174 16.2055 22.3948 15.6108 22.3948 15.0001C22.3948 14.3895 22.3174 13.7948 22.1734 13.2281L24.0348 12.2094C24.2961 12.0654 24.3974 11.7694 24.2614 11.5454L22.7854 9.12141C22.6494 8.8974 22.3268 8.8334 22.0654 8.97607L20.3041 9.94142C19.4001 9.02807 18.2547 8.34806 16.968 8.00139V6.18537C16.968 5.8987 16.748 5.6667 16.476 5.6667H13.524C13.252 5.6667 13.032 5.8987 13.032 6.18537V8.00139C11.7453 8.34806 10.5999 9.02807 9.69594 9.94142ZM14.9948 19.0002C17.2015 19.0002 18.9895 17.2095 18.9895 15.0001C18.9895 12.7908 17.2015 11.0001 14.9948 11.0001C12.7881 11.0001 11.0001 12.7908 11.0001 15.0001C11.0001 17.2095 12.7881 19.0002 14.9948 19.0002ZM16.5 15C16.5 15.828 15.8288 16.5 15 16.5C14.1712 16.5 13.5 15.828 13.5 15C13.5 14.172 14.1712 13.5 15 13.5C15.8288 13.5 16.5 14.172 16.5 15Z" fill="currentcolor"/>
+                                </svg>
+                            </i>
+                        </a>
+                    </li>
+                    <li class="dropdown user-menu">
+                        <a href="#" class="waves-effect waves-light dropdown-toggle" data-toggle="dropdown" title="User">
+                            <i class="ic-menulist-user"></i>
+                        </a>
+                        <div class="dropdown-menu user animated flipInX">
+                            <div class="caret"></div>
+                            <div class="user-profile">
+                                <div class="user-img">
+                                    <a href="#a"><img src="../images/temp/img_avatar_70.png" alt=""></a>
+                                    <span class="point c1"></span>
+                                </div>
+                                <div class="user-info">
+                                    <div class="name">오지훈 선임</div>
+                                    <div class="t1">비스앤테크 / ITO운영팀</div>
+                                </div>
+                            </div>
+                            <ul class="status-wrap">
+                                <li>
+                                    <a href="#a" class="active">
+                                        <span class="point c1"></span>
+                                        <span class="txt">온라인</span>
+                                        <div class="selected">선택됨</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#a">
+                                        <span class="point c2"></span>
+                                        <span class="txt">부재중</span>
+                                        <div class="selected">선택됨</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#a">
+                                        <span class="point c3"></span>
+                                        <span class="txt">집중근무중</span>
+                                        <div class="selected">선택됨</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#a">
+                                        <span class="point c4"></span>
+                                        <span class="txt">식사중</span>
+                                        <div class="selected">선택됨</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#a">
+                                        <span class="point c4"></span>
+                                        <span class="txt">회의중</span>
+                                        <div class="selected">선택됨</div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#a" class="btn-profile">My profile</a>
+                            <a href="#a" class="btn-logout">Log out</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        <!-- //navbar -->
+    </header>
+    <!-- //header -->
+
+    <!-- aside: main-sidebar -->
+    <aside class="main-sidebar" id="goto-aside">
+        <section class="sidebar">
+            <h2 class="blind">사이드바영역</h2>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#a">
+                        <i class="ic-menu budget"></i>
+                        <span class="menu">예산서</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#a">
+                        <i class="ic-menu cach-flow"></i>
+                        <span class="menu">자금 계확서</span>
+                        <span class="num">6</span>
+                        <i class="ar"></i>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#a">
+                        <i class="ic-menu cost-report"></i>
+                        <span class="menu">비용 보고서</span>
+                        <span class="num">2</span>
+                        <i class="ar"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#a">
+                        <i class="ic-menu funding-request"></i>
+                        <span class="menu">자금 요청서</span>
+                        <i class="ar"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#a">
+                        <i class="ic-menu ledger"></i>
+                        <span class="menu">전표관리</span>
+                        <i class="ar"></i>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <!-- //aside: main-sidebar -->
+
+    <!-- content-wrapper -->
+    <div class="content-wrapper" id="goto-content">
+        <div class="content-wrap">
+            <div class="leftarea-sub">
+                <div class="leftmenu">
+                    <h4 class="title">History</h4>
+                    <ul class="history">
+                        <li class="list-item">
+                            <div class="state  one"><i class="circle"></i></div>
+                            <div class="detail"><span class="date">21.00.00</span><span class="time">12 min ago</span></div>
+                            <div class="icon-close" style="flex:0 0 20px"></div>
+                        </li>
+                        <li class="list-item">
+                            <div class="state two"><i class="circle"></i></div>
+                            <div class="detail"><span class="date">21.00.00</span><span class="time">12 min ago</span></div>
+                            <div class="icon-close" style="flex:0 0 20px"></div>
+                        </li>
+                        <li class="list-item">
+                            <div class="state three"><i class="circle"></i></div>
+                            <div class="detail" ><span class="date">21.00.00</span><span class="time">12 min ago</span></div>
+                            <div class="icon-close" style="flex:0 0 20px"></div>
+                        </li>
+                        <li class="list-item">
+                            <div class="state four"><i class="circle"></i></div>
+                            <div class="detail"><span class="date">21.00.00</span><span class="time">12 min ago</span></div>
+                            <div class="icon-close" style="flex:0 0 20px"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <section class="content">
+                <h2 class="blind">컨텐츠영역</h2>
+                <!-- //search-block -->
+                <div class="content-scroll">
+                    <div class="table-wrap">
+                        <div class="table-top">
+                            <div class="left">
+                                <a href="#" class="btn primary">계정코드 변경하기</a>
+                            </div>
+                            <div class="right">
+                                <a href="#" class="btn primary"><span class="ic-voucher"></span>항목추가항목추가</a>
+                                <div class="switch-style01">
+                                    <input type="checkbox" id="switch01">
+                                    <label for="switch01">TOTAL PER EP<span class="icon"></span></label>
+                                </div>
+                            </div>
+                            <!-- <div class="right">
+                                <label class="checkbox"><input type="checkbox" name="checkTop"><i></i><span class="txt">안읽은 게시글</span></label>
+                                <div class="datepicker-wrap ml10">
+                                    <input type="text" class="datepicker-here" placeholder="yyyy/mm/dd" data-datepicker-id="datePicker">
+                                    <div class="mid">~</div>
+                                    <input type="text" class="datepicker-here" placeholder="yyyy/mm/dd" data-datepicker-id="datePicker">
+                                </div>
+                                <div class="search-inline">
+                                    <select class="w90">
+                                        <option>제목</option>
+                                        <option>내용</option>
+                                    </select>
+                                    <div class="search-input">
+                                        <input type="text" name="name" autocomplete="off">
+                                        <a href="#a" class="ic-search"><span class="blind">검색</span></a>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- grid 영역 -->
+                        <div class="grid-wrap w1500" id="realgrid">
+                        </div>
+                        <!-- //grid 영역 -->
+                        <!-- grid 영역 -->
+                        <div class="grid-wrap">
+                            <table class="table">
+                                <colgroup>
+                                    <!--<col style="width:80px;">-->
+                                    <col style="width:10%;">
+                                    <col style="width:12%;">
+                                    <col>
+                                    <col style="width:8%;">
+                                    <col style="width:8%;">
+                                    <col style="width:12%;">
+                                    <col style="width:12%;">
+                                    <col style="width:12%;">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <!--<th scope="col"><label class="checkbox small"><input type="checkbox" name="checkAll" class="checkAll"><i></i></label></th>-->
+                                        <th scope="col">코드</th>
+                                        <th scope="col">항목</th>
+                                        <th scope="col">세부항목</th>
+                                        <th scope="col"><span class="number">수량</span></th>
+                                        <th scope="col">단위</th>
+                                        <th scope="col">단가</th>
+                                        <th scope="col">세부예산</th>
+                                        <th scope="col">총예산</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="unread">
+                                        <!--<td><label class="checkbox small"><input type="checkbox" name="checkRow"><i></i></label></td>-->
+                                        <td>#1100<button class="under-more-btn"></button></td>
+                                        <td class="align-left">시나리오</td>
+                                        <td class="align-left">시나리오</td>
+                                        <td>8명</td>
+                                        <td>1개월</td>
+                                        <td class="align-right pr30">60,000,000</td>
+                                        <td class="align-right pr30">571,300,000</td>
+                                        <td class="total-col"><span>571,300,000</span></td>
+                                    </tr>
+                                    <tr class="unread">
+                                        <!--<td><label class="checkbox small"><input type="checkbox" name="checkRow"><i></i></label></td>-->
+                                        <td>#1100</td>
+                                        <td class="align-left">프로듀서진행비</td>
+                                        <td class="align-left">홍길동 21.00.00 - 00.00</td>
+                                        <td>8명</td>
+                                        <td>1개월</td>
+                                        <td class="align-right pr30">60,000,000</td>
+                                        <td class="align-right pr30">571,300,000</td>
+                                        <td class="total-col"><span>480,000,000</span></td>
+                                    </tr>
+                                    <tr class="unread">
+                                        <!--<td><label class="checkbox small"><input type="checkbox" name="checkRow"><i></i></label></td>-->
+                                        <td>#1100<img scr=""></td>
+                                        <td class="align-left">시나리오</td>
+                                        <td class="align-left">시나리오</td>
+                                        <td>8명</td>
+                                        <td>1개월</td>
+                                        <td class="align-right pr30">60,000,000</td>
+                                        <td class="align-right pr30">571,300,000</td>
+                                        <td class="total-col"><span>571,300,000</span></td>
+                                    </tr>
+                                    <tr class="unread">
+                                        <!--<td><label class="checkbox small"><input type="checkbox" name="checkRow"><i></i></label></td>-->
+                                        <td>#1100</td>
+                                        <td class="align-left">프로듀서진행비</td>
+                                        <td class="align-left">홍길동 21.00.00 - 00.00</td>
+                                        <td>8명</td>
+                                        <td>1개월</td>
+                                        <td class="align-right pr30">60,000,000</td>
+                                        <td class="align-right pr30">571,300,000</td>
+                                        <td class="total-col"><span>480,000,000</span></td>
+                                    </tr>
+                                    <tr class="unread">
+                                        <!--<td><label class="checkbox small"><input type="checkbox" name="checkRow"><i></i></label></td>-->
+                                        <td>#1100<img scr=""></td>
+                                        <td class="align-left">시나리오</td>
+                                        <td class="align-left">시나리오</td>
+                                        <td>8명</td>
+                                        <td>1개월</td>
+                                        <td class="align-right pr30">60,000,000</td>
+                                        <td class="align-right pr30">571,300,000</td>
+                                        <td class="total-col"><span>571,300,000</span></td>
+                                    </tr>
+                                    <tr class="unread">
+                                        <!--<td><label class="checkbox small"><input type="checkbox" name="checkRow"><i></i></label></td>-->
+                                        <td>#1100</td>
+                                        <td class="align-left">프로듀서진행비</td>
+                                        <td class="align-left">홍길동 21.00.00 - 00.00</td>
+                                        <td>8명</td>
+                                        <td>1개월</td>
+                                        <td class="align-right pr30">60,000,000</td>
+                                        <td class="align-right pr30">571,300,000</td>
+                                        <td class="total-col"><span>480,000,000</span></td>
+                                    </tr>
+                                    <tr class="unread">
+                                        <!--<td><label class="checkbox small"><input type="checkbox" name="checkRow"><i></i></label></td>-->
+                                        <td>#1100<img scr=""></td>
+                                        <td class="align-left">시나리오</td>
+                                        <td class="align-left">시나리오</td>
+                                        <td>8명</td>
+                                        <td>1개월</td>
+                                        <td class="align-right pr30">60,000,000</td>
+                                        <td class="align-right pr30">571,300,000</td>
+                                        <td class="total-col"><span>571,300,000</span></td>
+                                    </tr>
+                                    <tr class="unread">
+                                        <!--<td><label class="checkbox small"><input type="checkbox" name="checkRow"><i></i></label></td>-->
+                                        <td>#1100</td>
+                                        <td class="align-left">프로듀서진행비</td>
+                                        <td class="align-left">홍길동 21.00.00 - 00.00</td>
+                                        <td>8명</td>
+                                        <td>1개월</td>
+                                        <td class="align-right pr30">60,000,000</td>
+                                        <td class="align-right pr30">571,300,000</td>
+                                        <td class="total-col"><span>480,000,000</span></td>
+                                    </tr>
+                                    <tr class="total">
+                                        <td class="align-right pr30" colspan="8">TOTAL BUDGET <em>294,000,000</em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- //grid 영역 -->
+                        <!-- <div class="table-bottom">
+                            <div class="data-info">
+                                Showing <span>15</span> from <span>46</span> data
+                            </div>
+                            <div class="pagination-wrap">
+                                <ul>
+                                    <li class="first disabled"><a href="#a"><span class="blind">First</span></a></li>
+                                    <li class="previous disabled"><a href="#a"><span class="blind">Previous</span></a></li>
+                                    <li class="active"><a href="#a">1</a></li>
+                                    <li><a href="#a">2</a></li>
+                                    <li><a href="#a">3</a></li>
+                                    <li><a href="#a">4</a></li>
+                                    <li><a href="#a">5</a></li>
+                                    <li class="next"><a href="#a"><span class="blind">Next</span></a></li>
+                                    <li class="last"><a href="#a"><span class="blind">Last</span></a></li>
+                                </ul>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="bottom-from-wrap">
+                        <ul class="from-item-wrap">
+                            <li class="from-item-line">
+                                <div>
+                                    <div class="text-input">
+                                        <label for="text01">진행상태</label>
+                                        <input type="text" value="2021-00-00 / 홍길동 / 임시저장" id="text01">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="file-input">
+                                        <label for="file01">파일첨부</label>
+                                        <div class="flie-wrap">
+                                            <input type="file" id="file01">
+                                            <input type="text" class="file-text" readonly tabindex="-1">
+                                            <button class="file-btn" tabindex="-1">파일첨부</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="from-item-line">
+                                <div>
+                                    <div class="textarea-wrap">
+                                        <label for="file01">메모</label>
+                                        <div class="in-buttton">
+                                            <textarea class="h90">내용입니다.</textarea>
+                                            <button>저장</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="list-bottom-wrap">
+            <div class="left">
+            </div>
+            <div class="right">
+                <a href="#a" class="btn stroke">임시저장</a>
+                <a href="#a" class="btn primary">확인요청</a>
+            </div>
+        </div>
+
+        <div class="side-floating-btn">
+            <button data-toggle="side-pop">계정코드공통메모</button>
+        </div>
+    </div>
+    <!-- //content-wrapper -->
+
+    <!-- footer -->
+    <!-- <footer class="main-footer">
+        <div class="copyright">
+            <span>PFS</span> © 2021 All Rights Reserved
+        </div>
+        <div class="right">
+            <p>Made with by Bizntech</p>
+        </div>
+    </footer> -->
+    <!-- //footer -->
+
+    <!-- control-sidebar -->
+    <aside class="control-sidebar">
+        <a href="#a" class="btn-circle" data-toggle="control-sidebar"></a>
+        <ul class="nav nav-tabs control-sidebar-tabs">
+            <li class="nav-item"><a href="#tab-setting" data-toggle="tab" class="active"><i class="ic-control setting"></i></a></li>
+            <li class="nav-item"><a href="#tab-chat" data-toggle="tab" class=""><i class="ic-control chat"></i></a></li>
+            <li class="nav-item"><a href="#tab-todo" data-toggle="tab" class=""><i class="ic-control todo"></i></a></li>
+          </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab-setting">
+                <h3>Setting</h3>
+                <div class="row">
+                    <h4>Dark or Light Theme</h4>
+                    <div class="right">
+                        <label class="switch">
+                            <input type="checkbox" data-mainsidebarskin="toggle" id="toggle_left_sidebar_skin">
+                            <span class="switch-on"><i class="ic-light"></i></span>
+                            <span class="switch-off"><i class="ic-light off"></i></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <h4>Sidebar</h4>
+                    <div class="right">
+                        <input type="checkbox" id="switch" name="switch" class="input-on-off" data-layout="sidebar-collapse">
+                        <label for="switch" class="label-on-off">
+                            <span class="marble"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <h4>Theme Color</h4>
+                    <ul class="theme-switch">
+                        <li>
+                            <a href="javascript:void(0)" data-theme="theme-red" class="theme-red active"></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-theme="theme-blue" class="theme-blue"></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-theme="theme-green" class="theme-green"></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-theme="theme-darkblue" class="theme-darkblue"></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-theme="theme-orange" class="theme-orange"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab-chat">
+                <h3>Chat</h3>
+                <ul class="chat-list">
+                    <li>
+                        <div class="user-img">
+                            <a href="#a"><img src="../images/temp/img_avatar_40_1.png" alt=""></a>
+                            <span class="point c1"></span>
+                        </div>
+                        <a href="#a" class="txt-wrap">
+                            <div class="t1">오지훈 책임</div>
+                            <div class="t2">안녕하세요 책임님 오늘 일정이 어떻게 되시나요?</div>
+                            <div class="date">now</div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="user-img">
+                            <a href="#a"><img src="../images/temp/img_avatar_40_2.png" alt=""></a>
+                            <span class="point c1"></span>
+                        </div>
+                        <a href="#a" class="txt-wrap">
+                            <div class="t1">김하나 선임</div>
+                            <div class="t2">책임님, 오늘 주간회의 시간 확인 부탁드려요.</div>
+                            <div class="date">2m ago</div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="user-img">
+                            <a href="#a"><img src="../images/temp/img_avatar_40_1.png" alt=""></a>
+                            <span class="point c1"></span>
+                        </div>
+                        <a href="#a" class="txt-wrap">
+                            <div class="t1">오지훈 책임</div>
+                            <div class="t2">안녕하세요 책임님 오늘 일정이 어떻게 되시나요?</div>
+                            <div class="date">3m ago</div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="user-img">
+                            <a href="#a"><img src="../images/temp/img_avatar_40_2.png" alt=""></a>
+                            <span class="point c2"></span>
+                        </div>
+                        <a href="#a" class="txt-wrap">
+                            <div class="t1">김하나 선임</div>
+                            <div class="t2">책임님, 오늘 주간회의 시간 확인 부탁드려요.</div>
+                            <div class="date">10m ago</div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="user-img">
+                            <a href="#a"><img src="../images/temp/img_avatar_40_1.png" alt=""></a>
+                            <span class="point c3"></span>
+                        </div>
+                        <a href="#a" class="txt-wrap">
+                            <div class="t1">오지훈 책임</div>
+                            <div class="t2">안녕하세요 책임님 오늘 일정이 어떻게 되시나요?</div>
+                            <div class="date">33m ago</div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="user-img">
+                            <a href="#a"><img src="../images/temp/img_avatar_40_2.png" alt=""></a>
+                            <span class="point c4"></span>
+                        </div>
+                        <a href="#a" class="txt-wrap">
+                            <div class="t1">김하나 선임</div>
+                            <div class="t2">책임님, 오늘 주간회의 시간 확인 부탁드려요.</div>
+                            <div class="date">45m ago</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="tab-todo">
+
+            </div>
+        </div>
+    </aside>
+    <!-- //control-sidebar -->
+
+    <!-- sidePop -->
+    <aside class="side-pop mome-pop-wrap">
+        <a href="#a" class="btn-circle" data-toggle="control-sidebar"></a>
+    </aside>
+    <!-- //sidePop -->
+</div>
+<!-- //wrapper -->
+
+<!-- modal -->
+<div class="modal fade" id="modal-sample">
+    <div class="modal-dialog" role="document" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="ic-per"></i>추천한 직원</h4>
+                <a href="#a" class="close" data-dismiss="modal" aria-label="Close"><span class="blind">닫기</span></a>
+            </div>
+            <div class="modal-body" style="padding-bottom: 0;">
+                <div class="per-list">
+                    <div class="total-num">총 21명</div>
+                    <ul>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_1.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">배재익 과장</div>
+                                <div class="t2">기술개발팀</div>
+                            </div>
+                            <div class="member-status c2">정회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_2.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">서동준 과장</div>
+                                <div class="t2">자금운영팀</div>
+                            </div>
+                            <div class="member-status c1">비회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_3.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">안준선 대리</div>
+                                <div class="t2">영업팀</div>
+                            </div>
+                            <div class="member-status c2">정회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_4.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">안혜진 사원</div>
+                                <div class="t2">홍보팀</div>
+                            </div>
+                            <div class="member-status c2">정회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_5.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">이하나 사원</div>
+                                <div class="t2">사업기획팀</div>
+                            </div>
+                            <div class="member-status c1">비회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_1.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">배재익 과장</div>
+                                <div class="t2">기술개발팀</div>
+                            </div>
+                            <div class="member-status c2">정회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_2.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">서동준 과장</div>
+                                <div class="t2">자금운영팀</div>
+                            </div>
+                            <div class="member-status c1">비회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_3.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">안준선 대리</div>
+                                <div class="t2">영업팀</div>
+                            </div>
+                            <div class="member-status c2">정회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_4.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">안혜진 사원</div>
+                                <div class="t2">홍보팀</div>
+                            </div>
+                            <div class="member-status c2">정회원</div>
+                        </li>
+                        <li>
+                            <div class="user-img">
+                                <a href="#a"><img src="../images/temp/img_avatar_45_5.png" alt=""></a>
+                            </div>
+                            <div class="txt-wrap">
+                                <div class="t1">이하나 사원</div>
+                                <div class="t2">사업기획팀</div>
+                            </div>
+                            <div class="member-status c1">비회원</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-wrap">
+                    <a href="#a" class="btn c1">샘플</a>
+                    <a href="#a" class="btn c2">확인</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //modal -->
+
+<script src="../js/vendors.min.js"></script>
+<script src="../js/jquery-ui-1.9.2.js"></script>
+<script src="../js/jquery-migrate-1.2.1.js"></script>
+
+<script src="../assets/vendor_components/datepicker/datepicker.min.js"></script>
+<script src="../assets/vendor_components/datepicker/datepicker.en.js"></script>
+
+<script src="../js/template.js"></script>
+<script src="../js/demo.js"></script>
+<script>
+$(function() {
+    // checkAll
+    $('.checkAll').click( function() {
+        $(this).parents('.table').find('input[name=checkRow]').prop('checked', this.checked);
+    });
+
+    //datepicker
+    if ($("[data-datepicker-id=datePicker]").length > 0) {
+        $("[data-datepicker-id=datePicker]").datepicker({
+            format: "yyyy-mm-dd",
+            language: "en",
+        });
+    }
+
+    // slimScroll
+    $('.sidebar-menu').slimScroll({
+        height: 'auto'
+    });
+    $('.sidebar-footer').slimScroll({
+        height: '183'
+    });
+    $('.leftmenu').slimScroll({
+        height: 'auto'
+    });
+    $('.content-scroll').slimScroll({
+        height: 'auto'
+    });
+
+
+    $('[data-toggle="side-pop"]').controlSidebar();
+
+    $('.flie-wrap input[type=file]').on('change', function(){
+        flieName = $(this).val();
+        $(this).next('input').val(flieName);
+    });
+});
+
+</script>
+</body>
+</html>

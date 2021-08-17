@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../js/realgrid/realgrid-style.css"/>
+    <script src="../js/realgrid/realgrid-lic.js"></script>
+    <script src="../js/realgrid/realgrid.2.3.3.min.js"></script>
+    <script src="../js/realgrid/libs/jszip.min.js"></script>
+
+
+    <style>
+        #realgrid {
+            width: 100%;
+            height: 390px;
+        }
+    </style>
+
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 설치
+            const container = document.getElementById('realgrid');
+            const provider = new RealGrid.LocalDataProvider(false);
+            const gridView = new RealGrid.GridView(container);
+            gridView.setDataSource(provider);
+            gridView.editOptions.insertable = true;
+            gridView.editOptions.appendable = true;
+            gridView.displayOptions.fitStyle = "even";
+            gridView.displayOptions.selectionStyle = "rows"
+            // 필드 생성
+            provider.setFields([
+                {
+                    fieldName: "Code",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "Item",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "Details",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "Qty",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "Unit",
+                    dataType: "text",
+                },
+                {
+                    fieldName: "UnitPrice",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "DetailBudget",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "TotalBudget",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "TotalBudget1",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "TotalBudget2",
+                    dataType: "number",
+                },
+                {
+                    fieldName: "TotalBudget3",
+                    dataType: "number",
+                },
+            ]);
+
+            // 컬럼 생성
+            gridView.setColumns([
+                {
+                    name: "CodeColumn",
+                    fieldName: "Code",
+                    type: "data",
+                    header: {
+                        text: "코드",
+                    },
+                },
+                {
+                    name: "ItemColumn",
+                    fieldName: "Item",
+                    type: "data",
+                    header: {
+                        text: "항목",
+                    },
+                },
+                {
+                    name: "DetailsColumn",
+                    fieldName: "Details",
+                    type: "data",
+                    header: {
+                        text: "세부항목",
+                    },
+                },
+                {
+                    name: "QtyColumn",
+                    fieldName: "Qty",
+                    type: "data",
+                    header: {
+                        text: "수량",
+                    },
+                },
+                {
+                    name: "UnitColumn",
+                    fieldName: "Unit",
+                    type: "data",
+                    header: {
+                        text: "단위",
+                    },
+                },
+                {
+                    name: "UnitPriceColumn",
+                    fieldName: "UnitPrice",
+                    type: "data",
+                    header: {
+                        text: "단가",
+                    },
+                },
+                {
+                    name: "DetailBudgetColumn",
+                    fieldName: "DetailBudget",
+                    type: "data",
+                    header: {
+                        text: "세부예산",
+                    },
+                },
+                {
+                    name: "TotalBudgetColumn",
+                    fieldName: "TotalBudget",
+                    type: "data",
+
+                    header: {
+                        text: "총예산",
+
+                    },
+                    footer: {
+                        text: "합계",
+                        expression: "sum",
+                        styleName:"orange-column",
+                        numberFormat: "#,##0",
+
+                    },
+                    styleName: "right-column"
+                },
+                {
+                    name: "TotalBudgetColumn3",
+                    fieldName: "TotalBudget3",
+                    type: "data",
+                    header: {
+                        text: " ",
+                    },
+                },
+                {
+                    name: "TotalBudgetColumn1",
+                    fieldName: "TotalBudget1",
+                    type: "data",
+                    header: {
+                        text: " ",
+                    },
+                },
+                {
+                    name: "TotalBudget2Column",
+                    fieldName: "TotalBudget2",
+                    type: "data",
+                    header: {
+                        text: " ",
+                    },
+                },
+            ]);
+
+            // 데이터 채우기
+            provider.setRows([
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "시나리오",
+                    Details:"시나리오",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+                {
+                    Code: "#1001",
+                    Item: "프로듀서진행비",
+                    Details:"홍길동 21.00.00 - 00.00",
+                    Qty: "8명",
+                    Unit: "1개월",
+                    UnitPrice: "60000000",
+                    DetailBudget: "571300000",
+                    TotalBudget: "571300000",
+                },
+
+            ]);
+        });
+    </script>
+</head>
+<body>
+    <div class="toolbar">
+        <pre id="resultViewer"></pre>
+    </div>
+    <div id="realgrid"></div>
+</body>
+</html>

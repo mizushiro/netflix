@@ -1,0 +1,42 @@
+/* jQuery Gridly
+ * Copyright 2013 Kevin Sylvestre
+ *  1.1.4
+ */
+.gridly, .gridly > :not(.dragging) {
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out; 
+}
+.gridly .dragging {
+	z-index: 800; 
+}
+.gridly {
+	position: relative;
+	width: 100%;
+}
+.gridly .col-half {
+	flex: inherit !important;
+	width: 45%;
+}
+.gridly .col-full {
+	flex: inherit !important;
+	width: 100%;
+}
+
+
+.dashboard.row.dragtype {
+	display: block;
+	margin: 0;
+}
+.dashboard.row.dragtype .col-d1 {
+	flex: 0;
+	float: left;
+	width: 70%;
+}
+.dashboard.row.dragtype .col-d2 {
+	flex: 0;
+	float: left;
+	width: 30%;
+}
+.dashboard.row.dragtype .box {
+}
